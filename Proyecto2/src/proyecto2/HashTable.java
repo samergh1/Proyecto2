@@ -1,5 +1,7 @@
 package proyecto2;
 
+import javax.swing.JOptionPane;
+
 public class HashTable {
     private int lenght = 15;
     private Resumen [] tabla;
@@ -18,6 +20,25 @@ public class HashTable {
         }
         hash = hash % lenght;
         return hash;
+    }
+    
+    public void insertar(Resumen resumen){
+        int posicion;
+        posicion = HashFunction(resumen.getTitulo());
+        this.tabla[posicion] = resumen;
+    }
+    
+    public Resumen buscar(String titulo){
+        int posicion;
+        posicion = this.HashFunction(titulo);
+        if (this.tabla[posicion] != null){
+            Resumen resumen;
+            resumen = this.tabla[posicion];
+            return resumen;
+        } else{
+            JOptionPane.showMessageDialog(null, "El resumen que trata de buscar no existe");
+            return null;
+        }
     }
 
     public int getLenght() {
