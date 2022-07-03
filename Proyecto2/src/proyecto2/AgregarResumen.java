@@ -16,7 +16,7 @@ public class AgregarResumen {
         String titulo = "";
         String autores = "";
         String cuerpoResumen = "";
-        String palabrasClaves = "";
+        String palabras = "";
         
 
         JFileChooser archivo = new JFileChooser();
@@ -45,6 +45,7 @@ public class AgregarResumen {
                             }
                         }
                         
+                        String tituloNuevo = titulo.replace("\n", " ");                        
                         i++;
                         
                         while (!"Resumen".equals(txtSplit[i])){
@@ -66,14 +67,21 @@ public class AgregarResumen {
                         i++;
                         
                         while (i < txtSplit.length){
-                            palabrasClaves += txtSplit[i] + "\n";
+                            palabras += txtSplit[i] + "\n";
                             i++;
                         }
+                        
+                        String palabrasClaves = "";
+                        if (palabras.contains("Palabras Claves")){
+                            palabrasClaves = palabras.replace("Palabras Claves: ", "").replace("\n", " ").replace(".", "");
+                        } else{
+                            palabrasClaves = palabras.replace("Palabras claves: ", "").replace("\n", " ").replace(".", "");
+                        }
+                        
+                        br.close();
+                        Resumen resumen = new Resumen(tituloNuevo, autores, cuerpoResumen, palabrasClaves);
+                        return resumen;
                     }
-                    br.close();
-                    Resumen resumen = new Resumen(titulo, autores, cuerpoResumen, palabrasClaves);
-                    JOptionPane.showMessageDialog(null, "Archivo cargado correctamente");
-                    return resumen;
                 }
                 
             } catch (Exception e){
@@ -81,6 +89,10 @@ public class AgregarResumen {
             }
         }
         return null;
+    }
+    
+    public void analizarResumen(HashTable tablaPalabras){
+        
     }
     
 }

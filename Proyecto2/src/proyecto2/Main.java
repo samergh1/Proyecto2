@@ -15,8 +15,8 @@ public class Main {
         String palabrasClaves = "fundaciones directas, AutoCAD, complemento, C#";
         
         Resumen investigacion = new Resumen(titulo, autores, resumen, palabrasClaves);
-        tabla.insertar(investigacion);
-        System.out.println(tabla.buscar("Complemento de software para el diseño de fundaciones.").getResumen());
+        //tabla.insertar(investigacion);
+        //System.out.println(tabla.buscar("Complemento de software para el diseño de fundaciones.").getResumen());
         
         
         System.out.println(tabla.HashFunction(titulo));
