@@ -2,7 +2,9 @@ package proyecto2;
 
 public class Main {
     public static void main(String[] args) {
+        Interfaz interfaz = new Interfaz();
         HashTable tabla = new HashTable();
+        
         String titulo = "Complemento de software para el diseño de fundaciones.";
         String titulo2 = "Arquitectura referencial para mecanismos de Internacionalización y localización en PHP.";
         String titulo3 = "Sistema de diseño basado en Grid";
@@ -15,6 +17,7 @@ public class Main {
         Resumen investigacion = new Resumen(titulo, autores, resumen, palabrasClaves);
         tabla.insertar(investigacion);
         System.out.println(tabla.buscar("Complemento de software para el diseño de fundaciones.").getResumen());
+        
         
         System.out.println(tabla.HashFunction(titulo));
         System.out.println(tabla.HashFunction(titulo2));

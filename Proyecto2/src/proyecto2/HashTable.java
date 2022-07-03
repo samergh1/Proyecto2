@@ -14,8 +14,9 @@ public class HashTable {
     }
     
     public int HashFunction(String titulo){
+        int tituloLength = titulo.length();
         int hash = 0;
-        for (int i=0; i < titulo.length(); i++){
+        for (int i=0; i < tituloLength; i++){
             hash += titulo.charAt(i);
         }
         hash = hash % lenght;
@@ -31,14 +32,17 @@ public class HashTable {
     public Resumen buscar(String titulo){
         int posicion;
         posicion = this.HashFunction(titulo);
+        
         if (this.tabla[posicion] != null){
-            Resumen resumen;
-            resumen = this.tabla[posicion];
-            return resumen;
-        } else{
-            JOptionPane.showMessageDialog(null, "El resumen que trata de buscar no existe");
-            return null;
+            if (this.tabla[posicion].getTitulo().equals(titulo)){
+               Resumen resumen;
+                resumen = this.tabla[posicion];
+                return resumen; 
+            }           
+        }else{
+            JOptionPane.showMessageDialog(null, "El resumen que trata de buscar no existe"); 
         }
+        return null;
     }
 
     public int getLenght() {
