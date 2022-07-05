@@ -12,6 +12,9 @@
             </test-roots>
         </data>
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>insertar</word>
+            <word>Metodo</word>
+            <word>objeto</word>
             <word>palabras</word>
             <word>resumenes</word>
         </spellchecker-wordlist>

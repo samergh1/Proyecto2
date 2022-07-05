@@ -106,7 +106,7 @@ public class Interfaz extends javax.swing.JFrame {
             tablaPalabras.insertarPalabras(palabra);
         }
         
-        tablaPalabras.buscarPalabra(resumenFinal);
+        tablaPalabras.buscarFrecuenciaPalabra(resumenFinal, palabrasClaves);
         tablaPalabras.imprimirTablaPalabras();
         
     }//GEN-LAST:event_analizarResumenActionPerformed
