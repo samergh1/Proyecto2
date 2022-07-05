@@ -89,10 +89,5 @@ public class AgregarResumen {
             }
         }
         return null;
-    }
-    
-    public void analizarResumen(HashTable tablaPalabras){
-        
-    }
-    
+    }    
 }

@@ -38,6 +38,11 @@ public class HashTable {
         return hash;
     }
     
+    /**
+     * Metodo para insertar un objeto resumen a la tabla de resumenes
+     * @param resumen Objeto resumen a insertar
+     * @return Retorna true si se inserto el objeto y false si no se pudo insertar
+     */
     public boolean insertar(Resumen resumen){
         int posicion;
         posicion = HashFunction(resumen.getTitulo());
@@ -54,6 +59,10 @@ public class HashTable {
         return false;
     }
     
+    /**
+     * Metodo para insertar un objeto PalabrasClaves a la tabla de palabras claves 
+     * @param palabra Objeto palabra a insertar
+     */
     public void insertarPalabras(PalabrasClaves palabra){
         int posicion;
         posicion = HashFunction(palabra.getPalabra());
@@ -74,6 +83,45 @@ public class HashTable {
             JOptionPane.showMessageDialog(null, "El resumen que trata de buscar no existe"); 
         }
         return null;
+    }
+    
+    public void buscarFrecuenciaPalabra(String[] palabras, String[] palabrasClaves){
+        int posicion;
+        for (int i=0; i < palabrasClaves.length; i++){
+            for (int j=0; j < palabras.length; j++){
+                
+                if (palabrasClaves[i].contains(" ") && palabrasClaves[i].contains(palabras[j])){
+                    String[] palabrasArray = palabrasClaves[i].split(" ");
+                    boolean logico = true;
+                    
+                    for (int k=0; k < palabrasArray.length; k++){
+                        logico = palabras[j].equals(palabrasArray[k]);
+                        j++;
+                    }
+                    
+                    if (logico){
+                       posicion = this.HashFunction(palabrasClaves[i]);
+                       this.tablaPalabras[posicion].setFrecuencia(this.tablaPalabras[posicion].getFrecuencia() + 1);
+                    }
+                    
+                } else if (palabrasClaves[i].contains(palabras[j])){
+                    posicion = this.HashFunction(palabras[j]);
+                    if (this.tablaPalabras[posicion] != null){
+                        if (this.tablaPalabras[posicion].getPalabra().equals(palabras[j])){
+                            this.tablaPalabras[posicion].setFrecuencia(this.tablaPalabras[posicion].getFrecuencia() + 1); 
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public void imprimirTablaPalabras(){
+        for (int i=0; i < tablaPalabras.length; i++){
+            if (tablaPalabras[i] != null){
+                System.out.println(tablaPalabras[i].getPalabra() + " " + tablaPalabras[i].getFrecuencia());
+            }
+        }
     }
 
     public int getLenght() {

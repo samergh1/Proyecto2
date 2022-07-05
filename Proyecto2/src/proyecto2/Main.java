@@ -24,5 +24,6 @@ public class Main {
         System.out.println(tabla.HashFunction(titulo3));
         System.out.println(tabla.HashFunction(titulo4));
         
+        
     }
 }

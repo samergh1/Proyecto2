@@ -98,12 +98,16 @@ public class Interfaz extends javax.swing.JFrame {
         String titulo = (String)titulosDesplegables.getSelectedItem();
         String palabras = tabla.buscar(titulo).getPalabrasClaves();
         String resumen = tabla.buscar(titulo).getResumen();
+        String[] resumenFinal = resumen.replaceAll("\\p{Punct}", "").replace("\n", " ").split(" ");
         String[] palabrasClaves = palabras.split(", ");
         
         for (int i=0; i < palabrasClaves.length; i++){
             PalabrasClaves palabra = new PalabrasClaves(palabrasClaves[i]);
             tablaPalabras.insertarPalabras(palabra);
         }
+        
+        tablaPalabras.buscarFrecuenciaPalabra(resumenFinal, palabrasClaves);
+        tablaPalabras.imprimirTablaPalabras();
         
     }//GEN-LAST:event_analizarResumenActionPerformed
 
