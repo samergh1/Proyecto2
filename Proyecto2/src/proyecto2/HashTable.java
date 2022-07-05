@@ -75,6 +75,26 @@ public class HashTable {
         }
         return null;
     }
+    
+    public void buscarPalabra(String[] palabras){
+        int posicion;
+        for (int i=0; i < palabras.length; i++){
+            posicion = this.HashFunction(palabras[i]);
+            if (this.tablaPalabras[posicion] != null){
+                if (this.tablaPalabras[posicion].getPalabra().equals(palabras[i])){
+                   this.tablaPalabras[posicion].setFrecuencia(this.tablaPalabras[posicion].getFrecuencia() + 1);
+                }
+            }
+        }
+    }
+    
+    public void imprimirTablaPalabras(){
+        for (int i=0; i < tablaPalabras.length; i++){
+            if (tablaPalabras[i] != null){
+                System.out.println(tablaPalabras[i].getPalabra() + " " + tablaPalabras[i].getFrecuencia());
+            }
+        }
+    }
 
     public int getLenght() {
         return lenght;

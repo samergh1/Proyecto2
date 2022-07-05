@@ -91,7 +91,7 @@ public class AgregarResumen {
         return null;
     }
     
-    public void analizarResumen(HashTable tablaPalabras){
+    public void analizarResumen(HashTable tablaPalabras, String[] palabras){
         
     }
     
