@@ -77,6 +77,7 @@ public class AgregarResumen {
                         } else{
                             palabrasClaves = palabras.replace("Palabras claves: ", "").replace("\n", " ").replace(".", "");
                         }
+                        autores = autores.replace("-", " ");
                         
                         br.close();
                         Resumen resumen = new Resumen(tituloNuevo, autores, cuerpoResumen, palabrasClaves);
