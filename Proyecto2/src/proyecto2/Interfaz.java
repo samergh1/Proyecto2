@@ -45,6 +45,10 @@ public class Interfaz extends javax.swing.JFrame {
         detallesResumen = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         textoArea = new javax.swing.JTextArea();
+        palabrasClaves = new javax.swing.JComboBox<>();
+        buscarPorPalabraClave = new javax.swing.JButton();
+        titulosPorPalabra = new javax.swing.JComboBox<>();
+        detallesResumen2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -57,7 +61,7 @@ public class Interfaz extends javax.swing.JFrame {
                 agregarResumenActionPerformed(evt);
             }
         });
-        jPanel1.add(agregarResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, -1, -1));
+        jPanel1.add(agregarResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 630, -1, -1));
 
         Salir.setText("Salir");
         Salir.addActionListener(new java.awt.event.ActionListener() {
@@ -65,14 +69,14 @@ public class Interfaz extends javax.swing.JFrame {
                 SalirActionPerformed(evt);
             }
         });
-        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 510, -1, -1));
+        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 630, -1, -1));
 
         titulosDesplegables.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 titulosDesplegablesActionPerformed(evt);
             }
         });
-        jPanel1.add(titulosDesplegables, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 320, -1));
+        jPanel1.add(titulosDesplegables, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 320, -1));
 
         analizarResumen.setText("Analizar resumen");
         analizarResumen.addActionListener(new java.awt.event.ActionListener() {
@@ -80,29 +84,29 @@ public class Interfaz extends javax.swing.JFrame {
                 analizarResumenActionPerformed(evt);
             }
         });
-        jPanel1.add(analizarResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, -1, -1));
+        jPanel1.add(analizarResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, -1, -1));
 
         autores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 autoresActionPerformed(evt);
             }
         });
-        jPanel1.add(autores, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 310, -1));
+        jPanel1.add(autores, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 320, -1));
 
-        buscarPorAutor.setText("Buscar resumen autor");
+        buscarPorAutor.setText("Buscar resumen por autor");
         buscarPorAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarPorAutorActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarPorAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, -1, -1));
+        jPanel1.add(buscarPorAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
 
         titulosPorAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 titulosPorAutorActionPerformed(evt);
             }
         });
-        jPanel1.add(titulosPorAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 280, -1));
+        jPanel1.add(titulosPorAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 340, -1));
 
         detallesResumen.setText("Ver detalles del resumen");
         detallesResumen.addActionListener(new java.awt.event.ActionListener() {
@@ -110,16 +114,36 @@ public class Interfaz extends javax.swing.JFrame {
                 detallesResumenActionPerformed(evt);
             }
         });
-        jPanel1.add(detallesResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, -1, -1));
+        jPanel1.add(detallesResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, -1, -1));
 
         textoArea.setEditable(false);
         textoArea.setColumns(20);
         textoArea.setRows(5);
         jScrollPane1.setViewportView(textoArea);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, 590, 520));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 560, 660));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 610));
+        palabrasClaves.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                palabrasClavesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(palabrasClaves, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 320, -1));
+
+        buscarPorPalabraClave.setText("Buscar resumen por palabra clave");
+        jPanel1.add(buscarPorPalabraClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
+
+        titulosPorPalabra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                titulosPorPalabraActionPerformed(evt);
+            }
+        });
+        jPanel1.add(titulosPorPalabra, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 480, 350, -1));
+
+        detallesResumen2.setText("Ver detalles del resumen");
+        jPanel1.add(detallesResumen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 530, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, 780));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -131,7 +155,7 @@ public class Interfaz extends javax.swing.JFrame {
             titulosDesplegables.addItem(resumen.getTitulo());
             String[] arrNuevos = resumen.getAutores().split("\n");
             String[] arrAutores = listAutores.split("--");
-            if (listAutores == ""){
+            if ("".equals(listAutores)){
                 for (int i=0; i< arrNuevos.length; i++){
                     autores.addItem(arrNuevos[i]); 
                     listAutores += arrNuevos[i]+"--";
@@ -147,7 +171,7 @@ public class Interfaz extends javax.swing.JFrame {
                             break;
                         }
                     }
-                    if (boleaon == true){
+                    if (boleaon){
                         listAutores += arrNuevos[j]+"--";
                         autores.addItem(arrNuevos[j]);
                     }
@@ -224,6 +248,14 @@ public class Interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_detallesResumenActionPerformed
 
+    private void titulosPorPalabraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titulosPorPalabraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_titulosPorPalabraActionPerformed
+
+    private void palabrasClavesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_palabrasClavesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_palabrasClavesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -265,11 +297,15 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton analizarResumen;
     private javax.swing.JComboBox<String> autores;
     private javax.swing.JButton buscarPorAutor;
+    private javax.swing.JButton buscarPorPalabraClave;
     private javax.swing.JButton detallesResumen;
+    private javax.swing.JButton detallesResumen2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> palabrasClaves;
     private javax.swing.JTextArea textoArea;
     private javax.swing.JComboBox<String> titulosDesplegables;
     private javax.swing.JComboBox<String> titulosPorAutor;
+    private javax.swing.JComboBox<String> titulosPorPalabra;
     // End of variables declaration//GEN-END:variables
 }
