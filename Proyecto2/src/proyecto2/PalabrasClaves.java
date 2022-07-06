@@ -3,12 +3,15 @@ package proyecto2;
 public class PalabrasClaves {
     private String palabra;
     private int frecuencia;
-    
-    public PalabrasClaves(String palabra){
+    private String titulo;
+
+    public PalabrasClaves(String palabra, String titulo) {
         this.palabra = palabra;
         this.frecuencia = 0;
+        this.titulo = titulo;
     }
-
+    
+   
     public String getPalabra() {
         return palabra;
     }
@@ -23,6 +26,14 @@ public class PalabrasClaves {
 
     public void setFrecuencia(int frecuencia) {
         this.frecuencia = frecuencia;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
     
 }

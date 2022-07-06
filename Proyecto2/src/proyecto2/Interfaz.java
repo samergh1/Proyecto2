@@ -40,6 +40,7 @@ public class Interfaz extends javax.swing.JFrame {
         autores = new javax.swing.JComboBox<>();
         buscarPorAutor = new javax.swing.JButton();
         titulosPorAutor = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -60,7 +61,7 @@ public class Interfaz extends javax.swing.JFrame {
                 SalirActionPerformed(evt);
             }
         });
-        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, -1, -1));
+        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, -1, -1));
 
         titulosDesplegables.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +100,10 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jPanel1.add(titulosPorAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 280, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        jButton1.setText("jButton1");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -113,7 +117,7 @@ public class Interfaz extends javax.swing.JFrame {
             for (int i=0; i< arr.length; i++){
                 autores.addItem(arr[i]);
             }
-            
+         
         }
     }//GEN-LAST:event_agregarResumenActionPerformed
 
@@ -134,7 +138,7 @@ public class Interfaz extends javax.swing.JFrame {
         String[] palabrasClaves = palabras.split(", ");
         
         for (int i=0; i < palabrasClaves.length; i++){
-            PalabrasClaves palabra = new PalabrasClaves(palabrasClaves[i]);
+            PalabrasClaves palabra = new PalabrasClaves(palabrasClaves[i], titulo);
             tablaPalabras.insertarPalabras(palabra);
         }
         
@@ -207,6 +211,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton analizarResumen;
     private javax.swing.JComboBox<String> autores;
     private javax.swing.JButton buscarPorAutor;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> titulosDesplegables;
     private javax.swing.JComboBox<String> titulosPorAutor;

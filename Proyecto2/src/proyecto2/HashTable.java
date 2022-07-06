@@ -84,6 +84,20 @@ public class HashTable {
         }
         return null;
     }
+    public PalabrasClaves buscarTitulo(String palabraClave){
+        int posicion;
+        posicion = this.HashFunction(palabraClave);
+        if (this.tabla[posicion] != null){
+            if (this.tabla[posicion].getTitulo().equals(palabraClave)){
+               PalabrasClaves palabra;
+               palabra = this.tablaPalabras[posicion];
+                return palabra; 
+            }           
+        }else{
+            JOptionPane.showMessageDialog(null, "La palabra que trata de buscar no existe"); 
+        }
+        return null;
+    }
     
     public void buscarFrecuenciaPalabra(String[] palabras, String[] palabrasClaves){
         int posicion;

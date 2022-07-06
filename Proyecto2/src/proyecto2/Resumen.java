@@ -10,7 +10,7 @@ public class Resumen {
         this.titulo = titulo;
         this.autores = autores;
         this.cuerpoResumen = cuerpoResumen;
-        this.palabrasClaves = new PalabrasClaves(palabrasClaves);
+        this.palabrasClaves = new PalabrasClaves(palabrasClaves, titulo);
     }
 
     public String getTitulo() {
