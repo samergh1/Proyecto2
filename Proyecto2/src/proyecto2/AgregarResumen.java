@@ -92,9 +92,94 @@ public class AgregarResumen {
         return null;
     }
     
-    public void leerTxtGuardado(){
+    public HashTable leerTxtGuardado(){
+        String line;
+        String txt1 = "";
+        String [] txt;
+        String titulo = "";
+        String autores = "";
+        String cuerpoResumen = "";
+        String palabras = "";
+        HashTable hash = new HashTable();
         
+        File nuevo = new File("test\\Resumen.txt");
+        
+            
+            try {
+                FileReader fr = new FileReader(nuevo);
+                BufferedReader br = new BufferedReader(fr);
+                while ((line = br.readLine()) != null) {
+                    txt1 += line + "\n";
+                }
+                txt = txt1.split("----");
+                for (int k =0; k<txt.length; k++){
+                    System.out.println(txt[k]);
+                    if (!txt1.isEmpty()){
+                    
+                    String [] txtSplit = txt[k].split("\n");
+                    
+                    for (int i=0; i < txtSplit.length; i++){
+                        System.out.println(txtSplit[i]);
+                        while (!"Autores".equals(txtSplit[i])){
+                            if (!"".equals(txtSplit[i])){
+                                
+                                titulo += txtSplit[i] + "\n";
+                                System.out.println(titulo);
+                                i++;
+                            } else{
+                                i++;
+                            }
+                        }
+                        
+                        String tituloNuevo = titulo.replace("\n", " ");                        
+                        i++;
+                        
+                        while (!"Resumen".equals(txtSplit[i])){
+                            if (!"".equals(txtSplit[i])){
+                                autores += txtSplit[i] + "\n";
+                                i++;
+                            } else{
+                                i++;
+                            }
+                        }
+                        
+                        i++;
+                        
+                        while (!"".equals(txtSplit[i])){
+                            cuerpoResumen += txtSplit[i] + "\n";
+                            i++;
+                        }
+                        
+                        i++;
+                        
+                        while (i < txtSplit.length){
+                            palabras += txtSplit[i] + "\n";
+                            i++;
+                        }
+                        
+                        String palabrasClaves = "";
+                        if (palabras.contains("Palabras Claves")){
+                            palabrasClaves = palabras.replace("Palabras Claves: ", "").replace("\n", " ").replace(".", "");
+                        } else{
+                            palabrasClaves = palabras.replace("Palabras claves: ", "").replace("\n", " ").replace(".", "");
+                        }
+                        autores = autores.replace("-", " ");
+                        
+                        br.close();
+                        Resumen resumen = new Resumen(tituloNuevo, autores, cuerpoResumen, palabrasClaves);
+                        hash.insertar(resumen);
+                    }
+                }
+                }
+                
+            } catch (Exception e){
+                
+            }
+            
+        
+        return hash;
     }
+    
 
     public void guardarTxt(HashTable tabla){
         String info = "";
@@ -102,8 +187,8 @@ public class AgregarResumen {
         for (int i=0; i < resumen.length; i++){
             if (resumen[i] != null){
                 info += resumen[i].getTitulo() + "\n\n";
-                info += "Autores \n" + resumen[i].getAutores() + "\n";
-                info += "Resumen \n" + resumen[i].getResumen() + "\n";
+                info += "Autores\n" + resumen[i].getAutores() + "\n";
+                info += "Resumen\n" + resumen[i].getResumen() + "\n";
                 info += "Palabras Claves: " + resumen[i].getPalabrasClaves() + "\n";
                 info += "-----\n";
             }

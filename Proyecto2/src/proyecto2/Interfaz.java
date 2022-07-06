@@ -25,7 +25,28 @@ public class Interfaz extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        if (leerArchivo.leerTxtGuardado() != null){
+            tabla = leerArchivo.leerTxtGuardado();
+            Resumen [] resumen = tabla.getTabla();
+            for (int i = 0; i< resumen.length; i++){
+                if (resumen[i]!=null){
+                    titulosDesplegables.addItem(resumen[i].getTitulo());
+                    String[] arrNuevos = resumen[i].getAutores().split("\n");
+                    for (int j=0; j< arrNuevos.length; j++){
+                        autores.addItem(arrNuevos[j]); 
+                        listAutores += arrNuevos[j]+"--";
+                    }
+                    String [] arrNPalabras = resumen[i].getPalabrasClaves().split(", ");
+                    for (int k=0; k< arrNPalabras.length; k++){
+                        palabrasClaves.addItem(arrNPalabras[k]); 
+                        listAutores += arrNPalabras[k]+"--";
+                }   
+            }
+            }   
+            
+        }
     }
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
