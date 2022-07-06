@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 public class Interfaz extends javax.swing.JFrame {
     AgregarResumen leerArchivo = new AgregarResumen();
     HashTable tabla = new HashTable();
+    String listAutores = "";
 
     /**
      * Creates new form Interfaz
@@ -127,10 +128,31 @@ public class Interfaz extends javax.swing.JFrame {
         boolean logico = tabla.insertar(resumen);
         if (logico){
             titulosDesplegables.addItem(resumen.getTitulo());
-            String[] arr = resumen.getAutores().split("\n");
-            for (int i=0; i< arr.length; i++){
-                autores.addItem(arr[i]);
+            String[] arrNuevos = resumen.getAutores().split("\n");
+            String[] arrAutores = listAutores.split("--");
+            if (listAutores == ""){
+                for (int i=0; i< arrNuevos.length; i++){
+                    autores.addItem(arrNuevos[i]); 
+                    listAutores += arrNuevos[i]+"--";
             }
+            
+            }else{
+                boolean boleaon = false;
+                for (int j = 0; j < arrNuevos.length; j++){
+                    boleaon = true;
+                    for (int k = 0; k < arrAutores.length; k++){
+                        if (arrAutores[k].equals(arrNuevos[j])){
+                            boleaon = false;
+                            break;
+                        }
+                    }
+                    if (boleaon == true){
+                        listAutores += arrNuevos[j]+"--";
+                        autores.addItem(arrNuevos[j]);
+                    }
+                }
+            }
+                
          
         }
     }//GEN-LAST:event_agregarResumenActionPerformed
