@@ -94,14 +94,13 @@ public class HashTable {
         }
         return null;
     }
-    public PalabrasClaves buscarTitulo(String palabraClave){
+    public String buscarTitulo(String palabraClave){
         int posicion;
-        posicion = this.HashFunction(palabraClave);
-        if (this.tabla[posicion] != null){
-            if (this.tabla[posicion].getTitulo().equals(palabraClave)){
-               PalabrasClaves palabra;
-               palabra = this.tablaPalabras[posicion];
-               return palabra; 
+        posicion = this.HashFunctionPalabras(palabraClave, tablaPalabras.length);
+        if (this.tablaPalabras[posicion] != null){
+            if (this.tablaPalabras[posicion].getPalabra().equals(palabraClave)){
+               String titulo= this.tablaPalabras[posicion].getTitulo();
+               return titulo; 
             }           
         }else{
             JOptionPane.showMessageDialog(null, "La palabra que trata de buscar no existe"); 
