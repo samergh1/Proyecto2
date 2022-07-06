@@ -154,17 +154,17 @@ public class HashTable {
         
         }
     
-     public String [] buscarTitulosPorAutor (String autor){
+    public String [] buscarTitulosPorAutor (String autor){
         String titulos = "";
         int aux = this.tabla.length;
         for (int i = 0; i<aux; i++){
             if (tabla[i] != null){
-                String[] autores = tabla[i].getAutores().split(" ");
+                String[] autores = tabla[i].getAutores().split("\n");
                 int aux2 = autores.length;
                 for (int j = 0; j< aux2; j++){
                     if (autores[j].equals(autor)){
                         titulos += (tabla[i].getTitulo()+"--");
-                        
+
                     }
                 }
             }
@@ -175,15 +175,24 @@ public class HashTable {
             String[] arrTitulos = titulos.split("--");
             return arrTitulos;
         }
-        
-        }
+
+    }
     
-    public void imprimirTablaPalabras(){
+    public String imprimirResumen(String titulo){
+        String cadena = "";
+        Resumen resumen = this.buscar(titulo);
+        cadena += resumen.getTitulo() + "\n\n" + "Autores: \n" + resumen.getAutores() + "\n\n" + "Resumen: \n" + resumen.getResumen() + "\n\n" + "Palabras claves: \n" + resumen.getPalabrasClaves();
+        return cadena;
+    }
+    
+    public String imprimirTablaPalabras(){
+        String cadena = "";
         for (int i=0; i < tablaPalabras.length; i++){
             if (tablaPalabras[i] != null){
-                System.out.println(tablaPalabras[i].getPalabra() + " " + tablaPalabras[i].getFrecuencia());
+                cadena += "- " + tablaPalabras[i].getPalabra() + ": La palabra aparece " + tablaPalabras[i].getFrecuencia() + " veces" + "\n";
             }
         }
+        return cadena;
     }
 
     public int getLenght() {

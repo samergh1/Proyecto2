@@ -40,7 +40,9 @@ public class Interfaz extends javax.swing.JFrame {
         autores = new javax.swing.JComboBox<>();
         buscarPorAutor = new javax.swing.JButton();
         titulosPorAutor = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        detallesResumen = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textoArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -53,7 +55,7 @@ public class Interfaz extends javax.swing.JFrame {
                 agregarResumenActionPerformed(evt);
             }
         });
-        jPanel1.add(agregarResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        jPanel1.add(agregarResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, -1, -1));
 
         Salir.setText("Salir");
         Salir.addActionListener(new java.awt.event.ActionListener() {
@@ -61,7 +63,7 @@ public class Interfaz extends javax.swing.JFrame {
                 SalirActionPerformed(evt);
             }
         });
-        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, -1, -1));
+        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 510, -1, -1));
 
         titulosDesplegables.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,7 +85,7 @@ public class Interfaz extends javax.swing.JFrame {
                 autoresActionPerformed(evt);
             }
         });
-        jPanel1.add(autores, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 310, -1));
+        jPanel1.add(autores, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 310, -1));
 
         buscarPorAutor.setText("Buscar resumen autor");
         buscarPorAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -91,19 +93,31 @@ public class Interfaz extends javax.swing.JFrame {
                 buscarPorAutorActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarPorAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, -1, -1));
+        jPanel1.add(buscarPorAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, -1, -1));
 
         titulosPorAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 titulosPorAutorActionPerformed(evt);
             }
         });
-        jPanel1.add(titulosPorAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 280, -1));
+        jPanel1.add(titulosPorAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 280, -1));
 
-        jButton1.setText("jButton1");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
+        detallesResumen.setText("Ver detalles del resumen");
+        detallesResumen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                detallesResumenActionPerformed(evt);
+            }
+        });
+        jPanel1.add(detallesResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 470));
+        textoArea.setEditable(false);
+        textoArea.setColumns(20);
+        textoArea.setRows(5);
+        jScrollPane1.setViewportView(textoArea);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, 590, 520));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 610));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -113,7 +127,7 @@ public class Interfaz extends javax.swing.JFrame {
         boolean logico = tabla.insertar(resumen);
         if (logico){
             titulosDesplegables.addItem(resumen.getTitulo());
-            String[] arr = resumen.getAutores().split(" ");
+            String[] arr = resumen.getAutores().split("\n");
             for (int i=0; i< arr.length; i++){
                 autores.addItem(arr[i]);
             }
@@ -130,20 +144,29 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_titulosDesplegablesActionPerformed
 
     private void analizarResumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analizarResumenActionPerformed
-        HashTable tablaPalabras = new HashTable(15);
-        String titulo = (String)titulosDesplegables.getSelectedItem();
-        String palabras = tabla.buscar(titulo).getPalabrasClaves();
-        String resumen = tabla.buscar(titulo).getResumen();
-        String[] resumenFinal = resumen.replaceAll("\\p{Punct}", "").replace("\n", " ").split(" ");
-        String[] palabrasClaves = palabras.split(", ");
-        
-        for (int i=0; i < palabrasClaves.length; i++){
-            PalabrasClaves palabra = new PalabrasClaves(palabrasClaves[i], titulo);
-            tablaPalabras.insertarPalabras(palabra);
+        if (titulosDesplegables.getSelectedItem() != null){
+            HashTable tablaPalabras = new HashTable(15);
+            String cadena = "";
+            String titulo = (String)titulosDesplegables.getSelectedItem();
+            String palabras = tabla.buscar(titulo).getPalabrasClaves();
+            String resumen = tabla.buscar(titulo).getResumen();
+            String[] resumenFinal = resumen.replace(",", "").replace(".", "").replace("\n", " ").split(" ");
+            String[] palabrasClaves = palabras.split(", ");
+
+            for (int i=0; i < palabrasClaves.length; i++){
+                PalabrasClaves palabra = new PalabrasClaves(palabrasClaves[i], titulo);
+                tablaPalabras.insertarPalabras(palabra);
+            }
+
+            tablaPalabras.buscarFrecuenciaPalabra(resumenFinal, palabrasClaves);
+            cadena += titulo + "\n\n" + "Autores:" + "\n" + tabla.buscar(titulo).getAutores() + "\n";
+            cadena += "Frecuencia de las palabras claves:" + "\n";
+            cadena += tablaPalabras.imprimirTablaPalabras();
+            textoArea.setText(cadena);
+        } else{
+            JOptionPane.showMessageDialog(null, "Agregue un resumen para poder analizarlo");
         }
-        
-        tablaPalabras.buscarFrecuenciaPalabra(resumenFinal, palabrasClaves);
-        tablaPalabras.imprimirTablaPalabras();
+            
         
     }//GEN-LAST:event_analizarResumenActionPerformed
 
@@ -169,6 +192,15 @@ public class Interfaz extends javax.swing.JFrame {
     private void titulosPorAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titulosPorAutorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_titulosPorAutorActionPerformed
+
+    private void detallesResumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detallesResumenActionPerformed
+        if ((String)titulosPorAutor.getSelectedItem() != null){
+            String titulo = (String)titulosPorAutor.getSelectedItem();
+            textoArea.setText(tabla.imprimirResumen(titulo));
+        } else{
+            JOptionPane.showMessageDialog(null, "Seleccione un resumen para ver detalles");
+        }
+    }//GEN-LAST:event_detallesResumenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,8 +243,10 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton analizarResumen;
     private javax.swing.JComboBox<String> autores;
     private javax.swing.JButton buscarPorAutor;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton detallesResumen;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea textoArea;
     private javax.swing.JComboBox<String> titulosDesplegables;
     private javax.swing.JComboBox<String> titulosPorAutor;
     // End of variables declaration//GEN-END:variables
