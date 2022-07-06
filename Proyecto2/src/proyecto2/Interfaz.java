@@ -238,6 +238,8 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarResumenActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+        leerArchivo.guardarTxt(tabla);
+        
         System.exit(0);
     }//GEN-LAST:event_SalirActionPerformed
 

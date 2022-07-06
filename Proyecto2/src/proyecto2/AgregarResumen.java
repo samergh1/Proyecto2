@@ -90,5 +90,32 @@ public class AgregarResumen {
             }
         }
         return null;
-    }    
+    }
+    
+    public void leerTxtGuardado(){
+        
+    }
+
+    public void guardarTxt(HashTable tabla){
+        String info = "";
+        Resumen[] resumen = tabla.getTabla();
+        for (int i=0; i < resumen.length; i++){
+            if (resumen[i] != null){
+                info += resumen[i].getTitulo() + "\n\n";
+                info += "Autores \n" + resumen[i].getAutores() + "\n";
+                info += "Resumen \n" + resumen[i].getResumen() + "\n";
+                info += "Palabras Claves: " + resumen[i].getPalabrasClaves() + "\n";
+                info += "-----\n";
+            }
+        }
+        
+        try{
+            PrintWriter pr = new PrintWriter("test\\Resumen.txt");
+            pr.print(info);
+            pr.close();
+            
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al guardar el archivo");
+        }
+    }
 }
