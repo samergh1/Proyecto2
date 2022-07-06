@@ -38,6 +38,16 @@ public class HashTable {
         return hash;
     }
     
+    public int HashFunctionPalabras(String palabraClave, int longitud){
+        int palabraLenght = palabraClave.length();
+        int hash = 0;
+        for (int i=0; i < palabraLenght; i++){
+            hash += palabraClave.charAt(i);
+        }
+        hash = hash % longitud;
+        return hash;
+    }
+    
     /**
      * Metodo para insertar un objeto resumen a la tabla de resumenes
      * @param resumen Objeto resumen a insertar
@@ -65,7 +75,7 @@ public class HashTable {
      */
     public void insertarPalabras(PalabrasClaves palabra){
         int posicion;
-        posicion = HashFunction(palabra.getPalabra());
+        posicion = this.HashFunctionPalabras(palabra.getPalabra(), tablaPalabras.length);
         this.tablaPalabras[posicion] = palabra;
     }
     
@@ -91,7 +101,7 @@ public class HashTable {
             if (this.tabla[posicion].getTitulo().equals(palabraClave)){
                PalabrasClaves palabra;
                palabra = this.tablaPalabras[posicion];
-                return palabra; 
+               return palabra; 
             }           
         }else{
             JOptionPane.showMessageDialog(null, "La palabra que trata de buscar no existe"); 
@@ -114,12 +124,12 @@ public class HashTable {
                     }
                     
                     if (logico){
-                       posicion = this.HashFunction(palabrasClaves[i]);
+                       posicion = this.HashFunctionPalabras(palabrasClaves[i], this.tablaPalabras.length);
                        this.tablaPalabras[posicion].setFrecuencia(this.tablaPalabras[posicion].getFrecuencia() + 1);
                     }
                     
                 } else if (palabrasClaves[i].contains(palabras[j])){
-                    posicion = this.HashFunction(palabras[j]);
+                    posicion = this.HashFunctionPalabras(palabras[j], this.tablaPalabras.length);
                     if (this.tablaPalabras[posicion] != null){
                         if (this.tablaPalabras[posicion].getPalabra().equals(palabras[j])){
                             this.tablaPalabras[posicion].setFrecuencia(this.tablaPalabras[posicion].getFrecuencia() + 1); 
@@ -185,11 +195,13 @@ public class HashTable {
         return cadena;
     }
     
-    public String imprimirTablaPalabras(){
+    public String imprimirTablaPalabras(String[] palabrasClaves){
         String cadena = "";
-        for (int i=0; i < tablaPalabras.length; i++){
-            if (tablaPalabras[i] != null){
-                cadena += "- " + tablaPalabras[i].getPalabra() + ": La palabra aparece " + tablaPalabras[i].getFrecuencia() + " veces" + "\n";
+        int posicion;
+        for (int i=0; i < palabrasClaves.length; i++){
+            posicion = this.HashFunctionPalabras(palabrasClaves[i], this.tablaPalabras.length);
+            if (tablaPalabras[posicion] != null){
+                cadena += "- " + tablaPalabras[posicion].getPalabra() + ": La palabra aparece " + tablaPalabras[posicion].getFrecuencia() + " veces" + "\n";
             }
         }
         return cadena;

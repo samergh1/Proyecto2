@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 public class Interfaz extends javax.swing.JFrame {
     AgregarResumen leerArchivo = new AgregarResumen();
     HashTable tabla = new HashTable();
+    HashTable tablaPalabras = new HashTable(80);
 
     /**
      * Creates new form Interfaz
@@ -145,7 +146,6 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void analizarResumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analizarResumenActionPerformed
         if (titulosDesplegables.getSelectedItem() != null){
-            HashTable tablaPalabras = new HashTable(15);
             String cadena = "";
             String titulo = (String)titulosDesplegables.getSelectedItem();
             String palabras = tabla.buscar(titulo).getPalabrasClaves();
@@ -161,7 +161,7 @@ public class Interfaz extends javax.swing.JFrame {
             tablaPalabras.buscarFrecuenciaPalabra(resumenFinal, palabrasClaves);
             cadena += titulo + "\n\n" + "Autores:" + "\n" + tabla.buscar(titulo).getAutores() + "\n";
             cadena += "Frecuencia de las palabras claves:" + "\n";
-            cadena += tablaPalabras.imprimirTablaPalabras();
+            cadena += tablaPalabras.imprimirTablaPalabras(palabrasClaves);
             textoArea.setText(cadena);
         } else{
             JOptionPane.showMessageDialog(null, "Agregue un resumen para poder analizarlo");
