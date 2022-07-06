@@ -4,13 +4,13 @@ public class Resumen {
     private String titulo;
     private String autores;
     private String cuerpoResumen;
-    private String palabrasClaves;
+    private PalabrasClaves  palabrasClaves;
     
     public Resumen(String titulo, String autores, String cuerpoResumen, String palabrasClaves){
         this.titulo = titulo;
         this.autores = autores;
         this.cuerpoResumen = cuerpoResumen;
-        this.palabrasClaves = palabrasClaves;
+        this.palabrasClaves = new PalabrasClaves(palabrasClaves, titulo);
     }
 
     public String getTitulo() {
@@ -38,11 +38,11 @@ public class Resumen {
     }
 
     public String getPalabrasClaves() {
-        return palabrasClaves;
+        return palabrasClaves.getPalabra();
     }
 
-    public void setPalabrasClaves(String palabrasClaves) {
-        this.palabrasClaves = palabrasClaves;
+    public void setPalabrasClaves(String palabrasClave) {
+        this.palabrasClaves.setPalabra(palabrasClave);
     }
     
     
