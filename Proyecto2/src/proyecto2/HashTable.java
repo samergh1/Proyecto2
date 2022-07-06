@@ -116,6 +116,54 @@ public class HashTable {
         }
     }
     
+    public String[] buscarTitulosPorPalbrasClaves (String pclave){
+        String titulos = "";
+        int aux = this.tabla.length;
+        for (int i = 0; i<aux; i++){
+            if (tabla[i] != null){
+                String[] claves = tabla[i].getPalabrasClaves().split(" ");
+                int aux2 = claves.length;
+                for (int j = 0; j< aux2; j++){
+                    if (claves[j].equals(pclave)){
+                        titulos += (tabla[i].getTitulo()+" ");
+                        
+                    }
+                }
+            }
+        }
+        if (titulos.equals("")){
+            return null;
+        }else{
+            String[] arrTitulos = titulos.split(" ");
+            return arrTitulos;
+        }
+        
+        }
+    
+     public String [] buscarTitulosPorAutor (String autor){
+        String titulos = "";
+        int aux = this.tabla.length;
+        for (int i = 0; i<aux; i++){
+            if (tabla[i] != null){
+                String[] autores = tabla[i].getAutores().split(" ");
+                int aux2 = autores.length;
+                for (int j = 0; j< aux2; j++){
+                    if (autores[j].equals(autor)){
+                        titulos += (tabla[i].getTitulo()+"--");
+                        
+                    }
+                }
+            }
+        }
+        if (titulos.equals("")){
+            return null;
+        }else{
+            String[] arrTitulos = titulos.split("--");
+            return arrTitulos;
+        }
+        
+        }
+    
     public void imprimirTablaPalabras(){
         for (int i=0; i < tablaPalabras.length; i++){
             if (tablaPalabras[i] != null){

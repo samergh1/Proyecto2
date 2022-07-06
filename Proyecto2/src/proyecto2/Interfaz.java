@@ -4,6 +4,8 @@
  */
 package proyecto2;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author samer
@@ -35,6 +37,9 @@ public class Interfaz extends javax.swing.JFrame {
         Salir = new javax.swing.JButton();
         titulosDesplegables = new javax.swing.JComboBox<>();
         analizarResumen = new javax.swing.JButton();
+        autores = new javax.swing.JComboBox<>();
+        buscarPorAutor = new javax.swing.JButton();
+        titulosPorAutor = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -62,7 +67,7 @@ public class Interfaz extends javax.swing.JFrame {
                 titulosDesplegablesActionPerformed(evt);
             }
         });
-        jPanel1.add(titulosDesplegables, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 320, -1));
+        jPanel1.add(titulosDesplegables, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 320, -1));
 
         analizarResumen.setText("Analizar resumen");
         analizarResumen.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +75,29 @@ public class Interfaz extends javax.swing.JFrame {
                 analizarResumenActionPerformed(evt);
             }
         });
-        jPanel1.add(analizarResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
+        jPanel1.add(analizarResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, -1, -1));
+
+        autores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoresActionPerformed(evt);
+            }
+        });
+        jPanel1.add(autores, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 310, -1));
+
+        buscarPorAutor.setText("Buscar resumen autor");
+        buscarPorAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarPorAutorActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buscarPorAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, -1, -1));
+
+        titulosPorAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                titulosPorAutorActionPerformed(evt);
+            }
+        });
+        jPanel1.add(titulosPorAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 280, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
@@ -82,6 +109,11 @@ public class Interfaz extends javax.swing.JFrame {
         boolean logico = tabla.insertar(resumen);
         if (logico){
             titulosDesplegables.addItem(resumen.getTitulo());
+            String[] arr = resumen.getAutores().split(" ");
+            for (int i=0; i< arr.length; i++){
+                autores.addItem(arr[i]);
+            }
+            
         }
     }//GEN-LAST:event_agregarResumenActionPerformed
 
@@ -110,6 +142,29 @@ public class Interfaz extends javax.swing.JFrame {
         tablaPalabras.imprimirTablaPalabras();
         
     }//GEN-LAST:event_analizarResumenActionPerformed
+
+    private void autoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_autoresActionPerformed
+
+    private void buscarPorAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPorAutorActionPerformed
+        titulosPorAutor.removeAllItems();
+        String autor = (String)autores.getSelectedItem();
+        String[] aux = tabla.buscarTitulosPorAutor(autor);
+        if (aux != null){
+            int a = aux.length;
+            for (int i=0; i < a; i++){
+                titulosPorAutor.addItem(aux[i]);
+            }
+            
+            }
+                
+        
+    }//GEN-LAST:event_buscarPorAutorActionPerformed
+
+    private void titulosPorAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titulosPorAutorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_titulosPorAutorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,7 +205,10 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton Salir;
     private javax.swing.JButton agregarResumen;
     private javax.swing.JButton analizarResumen;
+    private javax.swing.JComboBox<String> autores;
+    private javax.swing.JButton buscarPorAutor;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> titulosDesplegables;
+    private javax.swing.JComboBox<String> titulosPorAutor;
     // End of variables declaration//GEN-END:variables
 }
