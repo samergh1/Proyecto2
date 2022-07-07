@@ -14,7 +14,9 @@ public class Interfaz extends javax.swing.JFrame {
     AgregarResumen leerArchivo = new AgregarResumen();
     HashTable tabla = new HashTable();
     HashTable tablaPalabras = new HashTable(80);
+    HashTable tablaPalabrasAnalizar = new HashTable(80);
     String listAutores = "";
+    String listPalabras = "";
 
     /**
      * Creates new form Interfaz
@@ -45,120 +47,240 @@ public class Interfaz extends javax.swing.JFrame {
         detallesResumen = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         textoArea = new javax.swing.JTextArea();
+        palabrasClaves = new javax.swing.JComboBox<>();
+        buscarPorPalabraClave = new javax.swing.JButton();
+        titulosPorPalabra = new javax.swing.JComboBox<>();
+        detallesResumen2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        agregarResumen.setBackground(new java.awt.Color(0, 204, 204));
+        agregarResumen.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        agregarResumen.setForeground(new java.awt.Color(255, 255, 255));
         agregarResumen.setText("Agregar resumen");
         agregarResumen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 agregarResumenActionPerformed(evt);
             }
         });
-        jPanel1.add(agregarResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, -1, -1));
+        jPanel1.add(agregarResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 680, 290, -1));
 
+        Salir.setBackground(new java.awt.Color(0, 204, 204));
+        Salir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Salir.setForeground(new java.awt.Color(255, 255, 255));
         Salir.setText("Salir");
         Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SalirActionPerformed(evt);
             }
         });
-        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 510, -1, -1));
+        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 680, -1, -1));
 
+        titulosDesplegables.setBackground(new java.awt.Color(204, 204, 204));
+        titulosDesplegables.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         titulosDesplegables.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 titulosDesplegablesActionPerformed(evt);
             }
         });
-        jPanel1.add(titulosDesplegables, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 320, -1));
+        jPanel1.add(titulosDesplegables, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 390, 40));
 
+        analizarResumen.setBackground(new java.awt.Color(204, 255, 255));
+        analizarResumen.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        analizarResumen.setForeground(new java.awt.Color(0, 0, 0));
         analizarResumen.setText("Analizar resumen");
         analizarResumen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 analizarResumenActionPerformed(evt);
             }
         });
-        jPanel1.add(analizarResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, -1, -1));
+        jPanel1.add(analizarResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 170, 40));
 
+        autores.setBackground(new java.awt.Color(204, 204, 204));
+        autores.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         autores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 autoresActionPerformed(evt);
             }
         });
-        jPanel1.add(autores, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 310, -1));
+        jPanel1.add(autores, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 320, 40));
 
-        buscarPorAutor.setText("Buscar resumen autor");
+        buscarPorAutor.setBackground(new java.awt.Color(204, 255, 255));
+        buscarPorAutor.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        buscarPorAutor.setForeground(new java.awt.Color(0, 0, 0));
+        buscarPorAutor.setText("Buscar resumen por autor");
         buscarPorAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarPorAutorActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarPorAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, -1, -1));
+        jPanel1.add(buscarPorAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 220, 40));
 
+        titulosPorAutor.setBackground(new java.awt.Color(204, 204, 204));
+        titulosPorAutor.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         titulosPorAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 titulosPorAutorActionPerformed(evt);
             }
         });
-        jPanel1.add(titulosPorAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 280, -1));
+        jPanel1.add(titulosPorAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 580, 40));
 
+        detallesResumen.setBackground(new java.awt.Color(204, 255, 255));
+        detallesResumen.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        detallesResumen.setForeground(new java.awt.Color(0, 0, 0));
         detallesResumen.setText("Ver detalles del resumen");
         detallesResumen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 detallesResumenActionPerformed(evt);
             }
         });
-        jPanel1.add(detallesResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, -1, -1));
+        jPanel1.add(detallesResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 220, 40));
 
         textoArea.setEditable(false);
+        textoArea.setBackground(new java.awt.Color(204, 255, 255));
         textoArea.setColumns(20);
+        textoArea.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         textoArea.setRows(5);
+        textoArea.setAutoscrolls(false);
+        textoArea.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jScrollPane1.setViewportView(textoArea);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, 590, 520));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 40, 560, 680));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 610));
+        palabrasClaves.setBackground(new java.awt.Color(204, 204, 204));
+        palabrasClaves.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        palabrasClaves.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                palabrasClavesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(palabrasClaves, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 480, 320, 40));
+
+        buscarPorPalabraClave.setBackground(new java.awt.Color(204, 255, 255));
+        buscarPorPalabraClave.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        buscarPorPalabraClave.setForeground(new java.awt.Color(0, 0, 0));
+        buscarPorPalabraClave.setText("Buscar resumen por palabra clave");
+        buscarPorPalabraClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarPorPalabraClaveActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buscarPorPalabraClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 270, 40));
+
+        titulosPorPalabra.setBackground(new java.awt.Color(204, 204, 204));
+        titulosPorPalabra.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        titulosPorPalabra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                titulosPorPalabraActionPerformed(evt);
+            }
+        });
+        jPanel1.add(titulosPorPalabra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 600, 40));
+
+        detallesResumen2.setBackground(new java.awt.Color(204, 255, 255));
+        detallesResumen2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        detallesResumen2.setForeground(new java.awt.Color(0, 0, 0));
+        detallesResumen2.setText("Ver detalles del resumen");
+        detallesResumen2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                detallesResumen2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(detallesResumen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 590, 210, 40));
+
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 60)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("MetroMendeley");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 530, 70));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, 780));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, 780));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void agregarResumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarResumenActionPerformed
-        Resumen resumen = leerArchivo.leerTxt();
-        boolean logico = tabla.insertar(resumen);
-        if (logico){
-            titulosDesplegables.addItem(resumen.getTitulo());
-            String[] arrNuevos = resumen.getAutores().split("\n");
-            String[] arrAutores = listAutores.split("--");
-            if (listAutores == ""){
-                for (int i=0; i< arrNuevos.length; i++){
-                    autores.addItem(arrNuevos[i]); 
-                    listAutores += arrNuevos[i]+"--";
-            }
-            
-            }else{
-                boolean boleaon = false;
-                for (int j = 0; j < arrNuevos.length; j++){
-                    boleaon = true;
-                    for (int k = 0; k < arrAutores.length; k++){
-                        if (arrAutores[k].equals(arrNuevos[j])){
-                            boleaon = false;
-                            break;
+        try{
+            Resumen resumen = leerArchivo.leerTxt();
+            boolean logico = tabla.insertar(resumen);
+
+            if (logico){
+                titulosDesplegables.addItem(resumen.getTitulo());
+                String titulo = resumen.getTitulo();
+                String palabras = tabla.buscar(titulo).getPalabrasClaves();
+                String[] palabraClave = palabras.split(", ");
+
+                for (int i=0; i < palabraClave.length; i++){
+                    PalabrasClaves palabra = new PalabrasClaves(palabraClave[i], titulo);
+                    tablaPalabras.insertarPalabras(palabra);
+                }
+                String[] arrNuevos = resumen.getAutores().split("\n");
+                String[] arrAutores = listAutores.split("--");
+                if ("".equals(listAutores)){
+                    for (int i=0; i< arrNuevos.length; i++){
+                        autores.addItem(arrNuevos[i]); 
+                        listAutores += arrNuevos[i]+"--";
+                }
+
+                }else{
+                    boolean boleaon = false;
+                    for (int j = 0; j < arrNuevos.length; j++){
+                        boleaon = true;
+                        for (int k = 0; k < arrAutores.length; k++){
+                            if (arrAutores[k].equals(arrNuevos[j])){
+                                boleaon = false;
+                                break;
+                            }
+                        }
+                        if (boleaon){
+                            listAutores += arrNuevos[j]+"--";
+                            autores.addItem(arrNuevos[j]);
                         }
                     }
-                    if (boleaon == true){
-                        listAutores += arrNuevos[j]+"--";
-                        autores.addItem(arrNuevos[j]);
+                }
+                String [] arrPalabras = listPalabras.split("--");
+                String [] arrNPalabras = resumen.getPalabrasClaves().split(", ");
+                if ("".equals(listPalabras)){
+                    for (int i=0; i< arrNPalabras.length; i++){
+                        palabrasClaves.addItem(arrNPalabras[i]); 
+                        listAutores += arrNPalabras[i]+"--";
+                }
+
+
+                }else{
+                    boolean boleon = false;
+                    for (int j = 0; j < arrNPalabras.length; j++){
+                        boleon = true;
+                        for (int k = 0; k < arrPalabras.length; k++){
+                            if (arrPalabras[k].equals(arrNPalabras[j])){
+                                boleon = false;
+                                break;
+                            }
+                        }
+                        if (boleon){
+                            listPalabras += arrNuevos[j]+"--";
+                            palabrasClaves.addItem(arrNPalabras[j]);
+                        }
                     }
                 }
             }
-                
-         
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al cargar el archivo");
         }
     }//GEN-LAST:event_agregarResumenActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+        leerArchivo.guardarTxt(tabla);
+        
         System.exit(0);
     }//GEN-LAST:event_SalirActionPerformed
 
@@ -177,17 +299,18 @@ public class Interfaz extends javax.swing.JFrame {
 
             for (int i=0; i < palabrasClaves.length; i++){
                 PalabrasClaves palabra = new PalabrasClaves(palabrasClaves[i], titulo);
-                tablaPalabras.insertarPalabras(palabra);
+                tablaPalabrasAnalizar.insertarPalabras(palabra);
             }
 
-            tablaPalabras.buscarFrecuenciaPalabra(resumenFinal, palabrasClaves);
+            tablaPalabrasAnalizar.buscarFrecuenciaPalabra(resumenFinal, palabrasClaves);
             cadena += titulo + "\n\n" + "Autores:" + "\n" + tabla.buscar(titulo).getAutores() + "\n";
             cadena += "Frecuencia de las palabras claves:" + "\n";
-            cadena += tablaPalabras.imprimirTablaPalabras(palabrasClaves);
+            cadena += tablaPalabrasAnalizar.imprimirTablaPalabras(palabrasClaves);
             textoArea.setText(cadena);
         } else{
             JOptionPane.showMessageDialog(null, "Agregue un resumen para poder analizarlo");
         }
+        
             
         
     }//GEN-LAST:event_analizarResumenActionPerformed
@@ -223,6 +346,32 @@ public class Interfaz extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Seleccione un resumen para ver detalles");
         }
     }//GEN-LAST:event_detallesResumenActionPerformed
+
+    private void titulosPorPalabraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titulosPorPalabraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_titulosPorPalabraActionPerformed
+
+    private void palabrasClavesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_palabrasClavesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_palabrasClavesActionPerformed
+
+    private void buscarPorPalabraClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPorPalabraClaveActionPerformed
+        titulosPorPalabra.removeAllItems();
+        String palabraClave = (String)palabrasClaves.getSelectedItem();
+        String titulo = tablaPalabras.buscarTitulo(palabraClave);
+        if (titulo != null){
+            titulosPorPalabra.addItem(titulo);
+        }
+    }//GEN-LAST:event_buscarPorPalabraClaveActionPerformed
+
+    private void detallesResumen2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detallesResumen2ActionPerformed
+        if ((String)titulosPorPalabra.getSelectedItem() != null){
+            String titulo = (String)titulosPorPalabra.getSelectedItem();
+            textoArea.setText(tabla.imprimirResumen(titulo));
+        } else{
+            JOptionPane.showMessageDialog(null, "Seleccione un resumen para ver detalles");
+        }
+    }//GEN-LAST:event_detallesResumen2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,11 +414,17 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton analizarResumen;
     private javax.swing.JComboBox<String> autores;
     private javax.swing.JButton buscarPorAutor;
+    private javax.swing.JButton buscarPorPalabraClave;
     private javax.swing.JButton detallesResumen;
+    private javax.swing.JButton detallesResumen2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> palabrasClaves;
     private javax.swing.JTextArea textoArea;
     private javax.swing.JComboBox<String> titulosDesplegables;
     private javax.swing.JComboBox<String> titulosPorAutor;
+    private javax.swing.JComboBox<String> titulosPorPalabra;
     // End of variables declaration//GEN-END:variables
 }
