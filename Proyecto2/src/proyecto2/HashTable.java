@@ -80,7 +80,6 @@ public class HashTable {
             }
         } else {
             this.tabla[posicion] = resumen;
-            JOptionPane.showMessageDialog(null, "Archivo cargado correctamente");
             return true;
         }
         return false;
